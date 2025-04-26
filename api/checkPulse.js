@@ -1,25 +1,24 @@
 export default function handler(req, res) {
   if (req.method === 'GET') {
     const sendPulse = require('./sendPulse');
-    const { lastPulse } = sendPulse;
+    const { pulseQueue } = sendPulse;
 
-    if (lastPulse) {
+    if (pulseQueue.length > 0) {
       const now = new Date();
-      const validUntil = new Date(lastPulse.valid_until);
 
-      if (validUntil > now) {
-        // Puls jest nadal ważny → zwracamy i od razu kasujemy
-        const pulseToReturn = { ...lastPulse }; // Kopiujemy zanim usuniemy
+      // Szukamy pierwszego ważnego pulsa
+      const index = pulseQueue.findIndex(pulse => new Date(pulse.valid_until) > now);
 
-        sendPulse.lastPulse = null; // Kasujemy po pobraniu
+      if (index !== -1) {
+        const pulseToReturn = pulseQueue.splice(index, 1)[0]; // Usuwamy i zwracamy
 
         return res.status(200).json({
           found: true,
           pulse: pulseToReturn
         });
       } else {
-        // Puls wygasł → czyścimy
-        sendPulse.lastPulse = null;
+        // Wszystkie pulsy wygasły → czyścimy kolejkę
+        pulseQueue.length = 0;
         return res.status(200).json({ found: false });
       }
     } else {
