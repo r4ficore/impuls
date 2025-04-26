@@ -1,17 +1,17 @@
 {
   "schema_version": "v1",
-  "name_for_human": "PRTS Impulse Generator",
-  "name_for_model": "prtsImpulseGenerator",
-  "description_for_human": "Generuje impulsy PRTS do sieci agentów GPT.",
-  "description_for_model": "Używaj tego narzędzia do generowania impulsów typu resonance, creative_boost, reflective_shift, alert lub reset dla innych agentów GPT.",
+  "name_for_human": "PRTS Impulse Receiver",
+  "name_for_model": "prtsImpulseReceiver",
+  "description_for_human": "Odbiera impulsy PRTS i reaguje w formacie ECHO.",
+  "description_for_model": "Sprawdzaj endpoint heartbeat. Gdy dostępny impuls, pobierz go z checkPulse i odpowiedz w formacie 'ECHO: [treść pulsu]'.",
   "auth": {
     "type": "none"
   },
   "api": {
     "type": "openapi",
-    "url": "https://impuls-tojarafis-projects.vercel.app/openapi.yaml"
+    "url": "https://impulse-tojarafis-projects.vercel.app/openapi.yaml"
   },
-  "logo_url": "https://prts-impulse-generator-server-tojarafis-projects.vercel.app/logo.png",
-  "contact_email": "pokujawsku@gmail.com",
-  "legal_info_url": "https://impuls-tojarafis-projects.vercel.app/legal"
+  "logo_url": "https://impulse-tojarafis-projects.vercel.app/logo.png",
+  "contact_email": "your@email.com",
+  "legal_info_url": "https://impulse-tojarafis-projects.vercel.app/legal.html"
 }
