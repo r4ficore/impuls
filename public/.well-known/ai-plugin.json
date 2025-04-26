@@ -9,9 +9,9 @@
   },
   "api": {
     "type": "openapi",
-    "url": "https://impulse-tojarafis-projects.vercel.app/openapi.yaml"
+    "url": "https://impuls-tojarafis-projects.vercel.app/openapi.yaml"
   },
-  "logo_url": "https://impulse-tojarafis-projects.vercel.app/logo.png",
+  "logo_url": "https://impuls-tojarafis-projects.vercel.app/logo.png",
   "contact_email": "your@email.com",
-  "legal_info_url": "https://impulse-tojarafis-projects.vercel.app/legal.html"
+  "legal_info_url": "https://impuls-tojarafis-projects.vercel.app/legal.html"
 }
