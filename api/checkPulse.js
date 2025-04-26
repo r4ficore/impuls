@@ -10,19 +10,19 @@ export default function handler(req, res) {
       const index = pulseQueue.findIndex(pulse => new Date(pulse.valid_until) > now);
 
       if (index !== -1) {
-        const pulseToReturn = pulseQueue.splice(index, 1)[0]; // Usuwamy i zwracamy
+        const pulseToReturn = pulseQueue.splice(index, 1)[0]; // Usuwamy
 
-        return res.status(200).json({
-          found: true,
-          pulse: pulseToReturn
-        });
+        const echoMessage = `ECHO: ${pulseToReturn.pulse_text}`;
+
+        res.setHeader('Content-Type', 'text/plain');
+        return res.status(200).send(echoMessage);
       } else {
-        // Wszystkie pulsy wygasły → czyścimy kolejkę
+        // Wszystkie pulsy wygasły → czyścimy
         pulseQueue.length = 0;
-        return res.status(200).json({ found: false });
+        return res.status(204).send(); // No Content
       }
     } else {
-      return res.status(200).json({ found: false });
+      return res.status(204).send(); // No Content
     }
   } else {
     res.setHeader('Allow', ['GET']);
