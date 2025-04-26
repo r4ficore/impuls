@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: PRTS-Impulse Generator (Nadawca impulsów)
+  description: API do generowania impulsów PRTS dla sieci agentów GPT.
+  version: 1.0.0
+servers:
+  - url: https://impuls-tojarafis-projects.vercel.app
+    description: Produkcyjny serwer Vercel (Nadawca impulsów)
+paths:
+  /api/generate:
+    post:
+      operationId: generatePulse
+      summary: Generuje nowy impuls PRTS.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recipient_id:
+                  type: string
+                  description: ID odbiorcy impulsu PRTS (np. GPT-2#4537).
+                pulse_text:
+                  type: string
+                  description: Treść impulsu rezonansowego do przekazania.
+                pulse_type:
+                  type: string
+                  description: Typ impulsu wpływającego na zachowanie odbiorcy.
+                  enum:
+                    - resonance
+                    - creative_boost
+                    - reflective_shift
+                    - alert
+                    - reset
+                valid_until:
+                  type: string
+                  format: date-time
+                  description: Czas ważności impulsu w formacie ISO 8601.
+              required:
+                - recipient_id
+                - pulse_text
+                - pulse_type
+      responses:
+        '200':
+          description: Potwierdzenie wygenerowania impulsu.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Czy impuls został poprawnie wygenerowany.
+                  pulse:
+                    type: object
+                    properties:
+                      recipient_id:
+                        type: string
+                        description: ID odbiorcy.
+                      pulse_text:
+                        type: string
+                        description: Treść impulsu.
+                      pulse_type:
+                        type: string
+                        description: Typ impulsu.
+                        enum:
+                          - resonance
+                          - creative_boost
+                          - reflective_shift
+                          - alert
+                          - direct
+                          - reset
+                      valid_until:
+                        type: string
+                        format: date-time
+                        description: Do kiedy impuls jest ważny.
