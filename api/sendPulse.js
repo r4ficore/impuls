@@ -18,14 +18,19 @@ export default function handler(req, res) {
       valid_until: validUntil.toISOString()
     };
 
-    pulseQueue.push(newPulse); // Dodajemy do kolejki
+    pulseQueue.push(newPulse);
+
+    // Utrzymujemy limit 25 impulsów
+    if (pulseQueue.length > 25) {
+      pulseQueue.shift(); // Usuwamy najstarszy impuls
+    }
 
     return res.status(200).json({
       message: "Pulse queued successfully",
       pulse: newPulse
     });
 
-  } else if (req.method === 'GET') {
+  } else {
     res.setHeader('Allow', ['POST']);
     return res.status(405).json({ error: 'Method not allowed' });
   }
