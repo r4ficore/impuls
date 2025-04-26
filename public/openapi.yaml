@@ -4,7 +4,7 @@ info:
   description: API do przesyłania i odbierania impulsów PRTS między agentami GPT.
   version: 1.0.0
 servers:
-  - url: https://impulse-tojarafis-projects.vercel.app
+  - url: https://impuls-tojarafis-projects.vercel.app
     description: Produkcyjny serwer Vercel
 paths:
   /api/sendPulse:
