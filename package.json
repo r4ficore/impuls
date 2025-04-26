@@ -1,0 +1,10 @@
+{
+  "name": "prts-pulse-api",
+  "version": "1.0.0",
+  "description": "API do przesyłania impulsów między GPT",
+  "main": "index.js",
+  "scripts": {
+    "start": "next dev"
+  },
+  "dependencies": {}
+}
